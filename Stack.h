@@ -18,7 +18,8 @@ public:
 	~Stack();
 	void push(const T& val) override;
 	void pop() override;
-	T& top();
+	T extract();
+	const T& top();
 	bool isEmpty();
 	size_t size();
 };
@@ -78,7 +79,14 @@ void Stack<T>::pop()
 }
 
 template<class T>
-T& Stack<T>::top()
+inline T Stack<T>::extract()
+{
+	pop;
+	return[top_index + 1];
+}
+
+template<class T>
+const T& Stack<T>::top()
 {
 	if (top_index < 0)
 	{

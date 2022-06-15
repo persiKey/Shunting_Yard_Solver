@@ -8,9 +8,11 @@ class StackSolver
 
 
 	int operation(int a, int b, char op);
-	int Calc(const char** line, size_t pos);
+	int Calc(const char* line, size_t pos);
 public:
-	int Solve(const char** line);
+	StackSolver();
+	~StackSolver();
+	int Solve(const char* line);
 
 };
 
