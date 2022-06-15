@@ -7,4 +7,5 @@ public:
 	virtual void pop() = 0;
 	virtual T extract() = 0;
 	virtual const T& top() = 0;
+	virtual ~IStack() = 0;
 };

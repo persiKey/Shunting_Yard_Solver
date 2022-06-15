@@ -4,7 +4,7 @@
 constexpr int GAP = 10;
 
 template <class T>
-class Stack : public IStack
+class Stack : public IStack<T>
 {
 	T* mem_ptr;
 	size_t memory_size;
