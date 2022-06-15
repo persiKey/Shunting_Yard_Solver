@@ -20,7 +20,16 @@ float StackSolver::Solve(const char* line)
 
 int StackSolver::get_priority(char op)
 {
-	return (op == '-' || op == '+') ? 1 : 2 ;
+	int pr;
+	switch (op)
+	{
+	case '-': case '+': pr = 1; break;
+	case '/': case '*': pr = 2; break;
+	case '^': pr = 3; break;
+	default:
+		break;
+	}
+	return pr ;
 }
 
 float StackSolver::operation(float a, float b, char op)
@@ -31,6 +40,7 @@ float StackSolver::operation(float a, float b, char op)
 	case '-': return a - b;
 	case '*': return a * b;
 	case '/': return a / b;
+	case '^': return pow(a, b);
 	}
 }
 
