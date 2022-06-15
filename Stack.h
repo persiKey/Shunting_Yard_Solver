@@ -1,9 +1,20 @@
 #pragma once
 
+template <class T>
+class IStack
+{
+public:
+	virtual void push(const T& val) = 0;
+	virtual void pop() = 0;
+	virtual T extract() = 0;
+	virtual const T& top() = 0;
+};
+
+
 constexpr int GAP = 10;
 
 template <class T>
-class Stack
+class Stack : public IStack
 {
 	T* mem_ptr;
 	size_t memory_size;
@@ -15,14 +26,12 @@ class Stack
 public:
 	Stack();
 	~Stack();
-	void push_back(const T& val);
-	void pop_back();
+	void push(const T& val) override;
+	void pop() override;
 	T& top();
 	bool isEmpty();
 	size_t size();
 };
-
-#include "Stack.h"
 
 template<class T>
 void Stack<T>::rellocate()
@@ -58,7 +67,7 @@ Stack<T>::~Stack()
 	delete mem_ptr;
 }
 template<class T>
-void Stack<T>::push_back(const T& val)
+void Stack<T>::push(const T& val)
 {
 	if (top_index + 1 >= memory_size)
 	{
@@ -69,7 +78,7 @@ void Stack<T>::push_back(const T& val)
 
 
 template<class T>
-void Stack<T>::pop_back()
+void Stack<T>::pop()
 {
 	if (top_index < 0)
 	{
