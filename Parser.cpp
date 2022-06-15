@@ -7,13 +7,12 @@
 
 int Parser::GetInt(const char* str, size_t& pos)
 {
-	int i = pos;
 	while (!isdigit(str[pos]))
 		++pos;
 
 	Stack<int> nums;
-	for (int i = pos; !isdigit(str[pos]); ++i)
-		nums.push(str[pos] - '0');
+	for (; isdigit(str[pos]); ++pos)
+		nums.push(int(str[pos] - '0'));
 
 	int result = 0;
 	for (int i = 0; !nums.isEmpty(); ++i)

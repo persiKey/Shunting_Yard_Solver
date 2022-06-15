@@ -2,7 +2,7 @@
 #include <sstream>
 StackSolver::StackSolver()
 {
-	num_stack = new Stack<int>;
+	num_stack = new Stack<float>;
 	op_stack = new Stack<char>;
 }
 
@@ -12,8 +12,18 @@ StackSolver::~StackSolver()
 	delete op_stack;
 }
 
+float StackSolver::Solve(const char* line)
+{
+	size_t start = 0;
+	return Calc(line, start);
+}
 
-int StackSolver::operation(int a, int b, char op)
+int StackSolver::get_priority(char op)
+{
+	return (op == '-' || op == '+') ? 1 : 2 ;
+}
+
+float StackSolver::operation(float a, float b, char op)
 {
 	switch (op)
 	{
@@ -24,7 +34,43 @@ int StackSolver::operation(int a, int b, char op)
 	}
 }
 
-int StackSolver::Calc(const char* line, size_t pos)
+float StackSolver::Oper(char op)
 {
-	
+	float right = num_stack->extract();
+	float left = num_stack->extract();
+
+	return operation(left, right, op);
+}
+
+float StackSolver::Calc(const char* line, size_t &pos)
+{
+	int help_pos = pos;
+	num_stack->push(parser.GetInt(line, pos));
+	while (line[pos] != '\0')
+	{
+		op_stack->push(parser.GetOp(line, pos));
+		num_stack->push(parser.GetInt(line, pos));
+		if (line[pos] == '\0')
+		{
+			num_stack->push(Oper(op_stack->extract()));
+			break;
+		}
+		help_pos = pos;
+		char next_op = parser.GetOp(line, pos);
+		pos = help_pos;
+
+		while (get_priority(op_stack->top()) < get_priority(next_op))
+		{
+			num_stack->push(parser.GetInt(line, pos));
+			num_stack->push((Oper(next_op)));
+			if (line[pos] == '\0')
+				break;
+			help_pos = pos;
+			next_op = parser.GetOp(line, pos);
+			pos = help_pos;
+		}
+		
+		num_stack->push(Oper(op_stack->extract()));
+	}
+	return num_stack->extract();
 }

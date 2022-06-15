@@ -15,13 +15,14 @@ class Stack : public IStack<T>
 	void rellocate();
 public:
 	Stack();
-	~Stack();
-	void push(const T& val) override;
+	~Stack() override;
+	void push(T val) override;
 	void pop() override;
-	T extract();
-	const T& top();
+	T extract() override;
+	const T& top() override;
 	bool isEmpty();
-	size_t size();
+	size_t size() override;
+	
 };
 
 template<class T>
@@ -57,8 +58,9 @@ Stack<T>::~Stack()
 {
 	delete mem_ptr;
 }
+
 template<class T>
-void Stack<T>::push(const T& val)
+void Stack<T>::push(T val)
 {
 	if (top_index + 1 >= memory_size)
 	{
@@ -81,8 +83,8 @@ void Stack<T>::pop()
 template<class T>
 inline T Stack<T>::extract()
 {
-	pop;
-	return[top_index + 1];
+	pop();
+	return mem_ptr[top_index + 1];
 }
 
 template<class T>
@@ -98,5 +100,5 @@ const T& Stack<T>::top()
 template<class T>
 bool Stack<T>::isEmpty()
 {
-	return false;
+	return top_index < 0;
 }
