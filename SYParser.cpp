@@ -62,11 +62,30 @@ bool SYParser::IsOpChar(char op)
 	return (op == '+') || (op == '-') || (op == '/') || (op == '*') || (op == '^');
 }
 
+void SYParser::Valid()
+{
+	for (int i = pos; line[i] != '\0'; ++i)
+	{
+		if (IsOpChar(line[i]) || isdigit(line[i]) || line[i] == '(' || line[i] == ')')
+			continue;
+		else
+		{
+			std::string er("Strange symbol at pos : ");
+			char buf[10];
+			_itoa_s(i, buf, 10);
+			er.append(buf);
+			throw std::invalid_argument(er);
+			exit(-1);
+		}
+	}
+}
+
 
 
 SYParser::SYParser(const char* follow_line) : pos(0)
 {
 	line = DeleteAllSpaces(follow_line);
+	Valid();
 }
 
 SYParser::~SYParser()

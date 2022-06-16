@@ -23,6 +23,7 @@ class SYParser
 	float GetNum();
 	bool IsBeg();
 	bool IsOpChar(char);
+	void Valid();
 public:
 	SYParser(const char* follow_line);
 	~SYParser();
