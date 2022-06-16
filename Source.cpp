@@ -16,7 +16,7 @@ int main(int argc, char** argv)
 				continue;
 			cout << s->Solve(argv[i]) << '\n';
 		}
-		catch (std::logic_error a)
+		catch (std::logic_error &a)
 		{
 				cout.flush(); cout.clear();
 				cout << a.what() << '\n';
@@ -34,7 +34,7 @@ int main(int argc, char** argv)
 				break;
 			cout << s->Solve(in.c_str()) << '\n';
 		}
-		catch (std::logic_error a)
+		catch (std::invalid_argument &a)
 		{
 			cout.flush(); cout.clear();
 			cout << a.what() << '\n';
