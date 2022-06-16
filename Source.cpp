@@ -15,7 +15,6 @@ int main(int argc, char** argv)
 	
 	std::string in;
 
-	
 	while (true)
 	{
 		std::getline(std::cin, in);
