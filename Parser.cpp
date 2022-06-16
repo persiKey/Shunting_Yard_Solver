@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
-#include "Stack.h"
+#include "LinearStack.h"
 
 
 bool Parser::IsOpChar(char op)
@@ -38,12 +38,12 @@ int Parser::GetInt(const char* str, size_t& pos)
 
 	int sign = get_sign(str, start, pos);
 	
-	Stack<int> nums;
+	LinearStack<int> nums;
 	for (; isdigit(str[pos]); ++pos)
 		nums.push(int(str[pos] - '0'));
 
 	int result = 0;
-	for (int i = 0; !nums.isEmpty(); ++i)
+	for (int i = 0; !nums.empty(); ++i)
 		result += nums.extract() * pow(10, i);
 
 	return result*sign;

@@ -2,8 +2,8 @@
 #include <sstream>
 StackSolver::StackSolver()
 {
-	num_stack = new Stack<float>;
-	op_stack = new Stack<char>;
+	num_stack = new LinearStack<float>;
+	op_stack = new LinearStack<char>;
 }
 
 StackSolver::~StackSolver()

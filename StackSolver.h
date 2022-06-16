@@ -1,8 +1,10 @@
 #pragma once
-#include "Stack.h"
+#include "LinearStack.h"
+#include "ISolver.h"
+
 #include "Parser.h"
 
-class StackSolver
+class StackSolver : public ISolver
 {
 	IStack<float>* num_stack;
 	IStack<char>* op_stack;
