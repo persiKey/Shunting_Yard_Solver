@@ -1,5 +1,6 @@
 #pragma once
 #include "IStack.h"
+#include <stdexcept>
 
 constexpr int GAP = 10;
 
@@ -75,7 +76,7 @@ void Stack<T>::pop()
 {
 	if (top_index < 0)
 	{
-		throw "invalid";
+		throw std::out_of_range("index < 0");
 	}
 	--top_index;
 }
@@ -92,7 +93,7 @@ const T& Stack<T>::top()
 {
 	if (top_index < 0)
 	{
-		throw "invalid";
+		throw std::out_of_range("index < 0");
 	}
 	return mem_ptr[top_index];
 }
