@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseStack.h"
-#include <stdexcept>
+
 
 constexpr int GAP = 10;
 
