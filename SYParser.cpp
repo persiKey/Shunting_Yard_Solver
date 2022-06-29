@@ -17,6 +17,7 @@ char* SYParser::DeleteAllSpaces(const char* line)
 			{
 				new_line[k] = new_line[k + 1];
 			}
+			--i;
 		}
 	}
 

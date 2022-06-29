@@ -18,7 +18,7 @@ struct Element
 class SYParser
 {
 	char* line;
-	size_t pos;
+	int pos;
 	char* DeleteAllSpaces(const char* line);
 	float GetNum();
 	bool IsBeg();
