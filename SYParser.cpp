@@ -129,6 +129,7 @@ Element::~Element()
 	switch (t)
 	{
 	case Type::NUMBER: delete (float*)el; break;
+	case Type::SPEC:
 	case Type::OP: delete (char*)el; break;
 	}
 }
